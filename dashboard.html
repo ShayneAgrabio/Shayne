@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Poppins', sans-serif; background-color: #f4f7f6; color: #333; }
+        .dashboard-navbar { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .dashboard-container { margin-top: 80px; max-width: 600px; }
+        .dashboard-card { border: none; border-radius: 24px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); background: #ffffff; position: relative; }
+        .profile-pic { width: 140px; height: 140px; object-fit: cover; border-radius: 50%; border: 5px solid #fff; box-shadow: 0 8px 20px rgba(0,0,0,0.12); margin-top: -90px; background-color: #f8f9fa; transition: transform 0.3s ease; }
+        .profile-pic:hover { transform: scale(1.05); }
+        .info-box { background: #f8f9fc; border-left: 4px solid #667eea; }
+        .btn-custom { border: none; border-radius: 10px; padding: 12px; font-weight: 600; letter-spacing: 0.5px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); cursor: pointer; text-decoration: none;}
+        .btn-logout { background-color: #ff4757; color: #fff; padding: 10px 35px; display: inline-block; }
+        .btn-logout:hover { background-color: #ff6b81; transform: translateY(-2px); box-shadow: 0 8px 15px rgba(255, 71, 87, 0.3); color: #fff; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm py-3 dashboard-navbar">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">MyApplication</a>
+        <span class="navbar-text text-white">
+            Signed in as <strong id="navUsername">...</strong>
+        </span>
+    </div>
+</nav>
+
+<div class="container d-flex justify-content-center">
+    <div class="dashboard-container w-100">
+        <div class="dashboard-card p-5 text-center mt-5">
+            
+            <div class="mb-4">
+                <img id="profileImage" src="" alt="Profile Picture" class="profile-pic" style="display: none;">
+                
+                <div id="noImagePlaceholder" class="profile-pic d-flex align-items-center justify-content-center text-muted mx-auto" style="background-color: #e1e5eb; font-size: 2rem; color: #fff !important;">
+                    👤
+                </div>
+            </div>
+
+            <h3 class="fw-bold mb-1" style="color: #2f3542;" id="mainUsername">...</h3>
+            <p class="text-muted mb-4">User Member</p>
+            
+            <hr class="text-muted mb-4">
+
+            <div class="text-start p-4 rounded-4 mb-4 info-box">
+                <h5 class="fw-bold" style="color: #4a4a4a; font-size: 1.1rem;">Personal Information</h5>
+                <div class="mt-3">
+                    <p class="mb-1"><strong class="text-muted">Username:</strong> <span class="ms-2" id="infoUsername">...</span></p>
+                    <p class="mb-0"><strong class="text-muted">Address:</strong> <span class="ms-2" id="infoAddress">...</span></p>
+                </div>
+            </div>
+
+            <div class="mt-2">
+                <a onclick="logout()" class="btn btn-custom btn-logout shadow-sm">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const loggedInUser = sessionStorage.getItem('loggedInUser');
+
+    if (!loggedInUser) {
+        window.location.href = 'login.html';
+    } else {
+        const savedUserString = localStorage.getItem('user_' + loggedInUser);
+        if (savedUserString) {
+            const userData = JSON.parse(savedUserString);
+            
+            document.getElementById('navUsername').textContent = userData.username;
+            document.getElementById('mainUsername').textContent = userData.username;
+            document.getElementById('infoUsername').textContent = userData.username;
+            document.getElementById('infoAddress').textContent = userData.address;
+
+            if (userData.profilePic) {
+                document.getElementById('profileImage').src = userData.profilePic;
+                document.getElementById('profileImage').style.display = 'inline-block';
+                document.getElementById('noImagePlaceholder').style.display = 'none';
+            }
+        }
+    }
+
+    function logout() {
+        sessionStorage.removeItem('loggedInUser');
+        window.location.href = 'login.html';
+    }
+</script>
+</body>
+</html>
