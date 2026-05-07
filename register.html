@@ -6,15 +6,15 @@
     <title>Register Account</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Poppins', sans-serif; background-color: #f4f7f6; color: #333; }
-        .auth-body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; align-items: center; }
-        .custom-card { border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(10px); }
-        .form-control { border-radius: 10px; padding: 12px 15px; border: 1px solid #e1e5eb; transition: all 0.3s ease; }
-        .form-control:focus { border-color: #667eea; box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15); background-color: #ffffff !important; }
-        .btn-custom { border: none; border-radius: 10px; padding: 12px; font-weight: 600; letter-spacing: 0.5px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
-        .btn-register { background: linear-gradient(135deg, #764ba2 0%, #683b96 100%); color: #fff; }
-        .btn-register:hover { background: linear-gradient(135deg, #683b96 0%, #5a3085 100%); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(118, 75, 162, 0.4); color: #fff; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #fdfafb; color: #333; }
+        .auth-body { min-height: 100vh; display: flex; align-items: center; }
+        .custom-card { border: none; border-radius: 20px; box-shadow: 0 15px 35px rgba(128, 0, 32, 0.08); background: #ffffff; }
+        .form-control { border-radius: 10px; padding: 12px 15px; border: 1px solid #e2e8f0; transition: all 0.2s; }
+        .form-control:focus { border-color: #800020; box-shadow: 0 0 0 4px rgba(128, 0, 32, 0.1); background-color: #ffffff !important; }
+        .btn-register { background: #800020; color: #fff; border: none; border-radius: 10px; padding: 12px; font-weight: 600; transition: all 0.3s; }
+        .btn-register:hover { background: #5c0017; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(128, 0, 32, 0.3); color: #fff; }
+        .text-maroon { color: #800020; }
     </style>
 </head>
 <body class="auth-body">
@@ -22,33 +22,33 @@
 <div class="container d-flex justify-content-center py-5">
     <div class="w-100" style="max-width: 500px;">
         <div class="custom-card p-5">
-            <h2 class="text-center mb-4 fw-bold" style="color: #4a4a4a;">Create Account</h2>
+            <h3 class="text-center mb-4 fw-bold text-maroon">Create Account</h3>
 
-            <div id="statusMsg" class="alert rounded-3 text-center" style="display:none;"></div>
+            <div id="statusMsg" class="alert rounded-3 text-center" style="display:none; font-size: 0.9rem;"></div>
 
             <form id="registerForm">
                 <div class="mb-3">
-                    <label class="form-label text-muted fw-semibold">Username</label>
+                    <label class="form-label text-muted fw-semibold small text-uppercase">Username</label>
                     <input type="text" id="username" class="form-control bg-light" placeholder="Choose a username" required>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label text-muted fw-semibold">Password</label>
+                    <label class="form-label text-muted fw-semibold small text-uppercase">Password</label>
                     <input type="password" id="password" class="form-control bg-light" placeholder="Create a password" required>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label text-muted fw-semibold">Address</label>
+                    <label class="form-label text-muted fw-semibold small text-uppercase">Address</label>
                     <input type="text" id="address" class="form-control bg-light" placeholder="Enter your full address" required>
                 </div>
                 <div class="mb-4">
-                    <label class="form-label text-muted fw-semibold">2x2 Picture</label>
+                    <label class="form-label text-muted fw-semibold small text-uppercase">Profile Picture</label>
                     <input type="file" id="profile_pic" class="form-control bg-light" accept="image/*" required>
-                    <small class="text-muted" style="font-size: 0.75rem;">(Must be smaller than 1.5MB)</small>
+                    <small class="text-muted" style="font-size: 0.75rem;">(Maximum size: 5MB)</small>
                 </div>
-                <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-custom btn-register">Register</button>
+                <div class="d-grid gap-2 mt-2">
+                    <button type="submit" class="btn btn-register">Register Account</button>
                 </div>
                 <div class="mt-4 text-center">
-                    <small class="text-muted">Already have an account? <a href="login.html" style="color: #764ba2; font-weight: 600; text-decoration: none;">Login here</a></small>
+                    <small class="text-muted">Already have an account? <a href="login.html" class="text-maroon fw-bold text-decoration-none">Log in</a></small>
                 </div>
             </form>
         </div>
@@ -65,19 +65,18 @@
         const fileInput = document.getElementById('profile_pic');
         const statusMsgDiv = document.getElementById('statusMsg');
 
-        // Reset message box
         statusMsgDiv.style.display = 'none';
         statusMsgDiv.className = 'alert rounded-3 text-center';
 
         if (fileInput.files.length > 0) {
             const file = fileInput.files[0];
 
-            // 1. Check if the file is larger than 1.5 Megabytes
-            if (file.size > 1.5 * 1024 * 1024) {
-                statusMsgDiv.innerHTML = "<b>Error:</b> Image is too large! Please choose a smaller picture (under 1.5MB).";
+            // 1. Check if the file is larger than 5 Megabytes
+            if (file.size > 5 * 1024 * 1024) {
+                statusMsgDiv.innerHTML = "<b>Error:</b> Image is too large! Please choose a picture under 5MB.";
                 statusMsgDiv.classList.add('alert-danger');
                 statusMsgDiv.style.display = 'block';
-                return; // Stop the registration process
+                return; 
             }
 
             const reader = new FileReader();
@@ -92,17 +91,16 @@
                     profilePic: base64Image
                 };
 
-                // 2. Try to save it, but catch the error if the browser storage rejects it
                 try {
                     localStorage.setItem('user_' + username, JSON.stringify(userAccount));
                     
-                    statusMsgDiv.innerHTML = "Registration successful! <a href='login.html' class='alert-link'>Login here</a>";
+                    statusMsgDiv.innerHTML = "Success! <a href='login.html' class='alert-link text-maroon'>Log in here</a>";
                     statusMsgDiv.classList.add('alert-success');
                     statusMsgDiv.style.display = 'block';
                     
                     document.getElementById('registerForm').reset();
                 } catch (error) {
-                    statusMsgDiv.innerHTML = "<b>Error:</b> The image is still too large for the browser to save. Try an even smaller one!";
+                    statusMsgDiv.innerHTML = "<b>Error:</b> File is within 5MB but browser storage is full. Please try a slightly smaller image.";
                     statusMsgDiv.classList.add('alert-danger');
                     statusMsgDiv.style.display = 'block';
                 }
