@@ -3,31 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>User Dashboard</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
+
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; background: #fdfafb; color: #333; }
-        
-        /* FULL MAROON HEADER OVERLAY */
-        .dashboard-header { background: linear-gradient(135deg, #4a000d 0%, #800020 100%); height: 300px; width: 100%; position: absolute; top: 0; z-index: -1; }
-        
-        .dashboard-container { margin-top: 120px; max-width: 650px; }
-        .dashboard-card { border: none; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); background: #ffffff; padding: 3rem; margin: 0 1rem; }
-        
-        .profile-container { margin-top: -120px; margin-bottom: 20px; display: flex; justify-content: center; position: relative; }
-        
-        /* NO BACKGROUND COLOR SO NO CIRCLE SHOWS BENEATH */
-        .profile-pic { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 6px solid #fff; box-shadow: 0 10px 25px rgba(0,0,0,0.15); background: transparent; }
-        
-        /* Placeholder styling */
-        .placeholder-circle { width: 160px; height: 160px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background-color: #800020; border: 6px solid #fff; box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
-        
-        .info-box { background: #fcf5f6; border-left: 5px solid #800020; border-radius: 12px; }
-        
-        .btn-logout { background-color: #fff; color: #800020; border: 2px solid #800020; padding: 12px 35px; border-radius: 10px; font-weight: 600; transition: all 0.3s; text-decoration: none; cursor: pointer; display: block; width: 100%; text-align: center; }
-        .btn-logout:hover { background: #800020; color: #fff; box-shadow: 0 8px 20px rgba(128, 0, 32, 0.2); }
-        .text-maroon { color: #800020; }
+
+        body{
+            font-family:'Inter',sans-serif;
+            background:#f5f5f5;
+        }
+
+        .dashboard-header{
+            background:linear-gradient(135deg,#4a000d 0%,#800020 100%);
+            height:320px;
+            width:100%;
+            position:absolute;
+            top:0;
+            z-index:-1;
+        }
+
+        .dashboard-container{
+            margin-top:120px;
+            max-width:900px;
+        }
+
+        .dashboard-card{
+            background:#fff;
+            border-radius:25px;
+            padding:40px;
+            box-shadow:0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .profile-pic{
+            width:180px;
+            height:180px;
+            object-fit:cover;
+            border-radius:12px;
+            border:5px solid #fff;
+            box-shadow:0 10px 25px rgba(0,0,0,0.2);
+            margin-top:-120px;
+        }
+
+        .info-box{
+            background:#fcf5f6;
+            border-left:5px solid #800020;
+            border-radius:15px;
+        }
+
+        .btn-logout{
+            background:#800020;
+            color:#fff;
+            border:none;
+            padding:14px 30px;
+            border-radius:12px;
+            font-weight:600;
+            width:100%;
+        }
+
+        .btn-logout:hover{
+            background:#5c0017;
+        }
+
+        .text-maroon{
+            color:#800020;
+        }
+
     </style>
 </head>
 <body>
@@ -35,74 +79,191 @@
 <div class="dashboard-header"></div>
 
 <div class="container d-flex justify-content-center">
+
     <div class="dashboard-container w-100">
+
         <div class="dashboard-card text-center">
-            
-            <div class="profile-container" id="profileWrapper">
-                <img id="profileImage" src="" alt="Profile Picture" class="profile-pic" style="display: none;">
-                
-                <div id="noImagePlaceholder" class="placeholder-circle">
-                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
+
+            <img id="profileImage" class="profile-pic">
+
+            <h2 class="fw-bold mt-4 text-maroon" id="mainUsername"></h2>
+
+            <p class="text-muted text-uppercase small fw-bold">
+                Member Account
+            </p>
+
+            <div class="info-box p-4 mt-4 text-start">
+
+                <h5 class="fw-bold mb-4 text-maroon">
+                    PERSONAL INFORMATION
+                </h5>
+
+                <div class="row g-4">
+
+                    <div class="col-md-6">
+                        <small class="text-muted text-uppercase fw-bold">
+                            Full Name
+                        </small>
+
+                        <p id="infoFullname"></p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <small class="text-muted text-uppercase fw-bold">
+                            Email
+                        </small>
+
+                        <p id="infoEmail"></p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <small class="text-muted text-uppercase fw-bold">
+                            Phone
+                        </small>
+
+                        <p id="infoPhone"></p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <small class="text-muted text-uppercase fw-bold">
+                            Birthday
+                        </small>
+
+                        <p id="infoBirthday"></p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <small class="text-muted text-uppercase fw-bold">
+                            Gender
+                        </small>
+
+                        <p id="infoGender"></p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <small class="text-muted text-uppercase fw-bold">
+                            Address
+                        </small>
+
+                        <p id="infoAddress"></p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <small class="text-muted text-uppercase fw-bold">
+                            School Graduated
+                        </small>
+
+                        <p id="infoSchool"></p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <small class="text-muted text-uppercase fw-bold">
+                            Graduation Year
+                        </small>
+
+                        <p id="infoGraduationYear"></p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <small class="text-muted text-uppercase fw-bold">
+                            Course
+                        </small>
+
+                        <p id="infoCourse"></p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <small class="text-muted text-uppercase fw-bold">
+                            Occupation
+                        </small>
+
+                        <p id="infoOccupation"></p>
+                    </div>
+
+                    <div class="col-12">
+                        <small class="text-muted text-uppercase fw-bold">
+                            About Me
+                        </small>
+
+                        <p id="infoBio"></p>
+                    </div>
+
                 </div>
+
             </div>
 
-            <h2 class="fw-bold mb-1 text-maroon" id="mainUsername">...</h2>
-            <p class="text-muted mb-4 small fw-bold text-uppercase" style="letter-spacing: 1px;">Member</p>
-            
-            <div class="text-start p-4 mb-4 info-box mt-4">
-                <h6 class="fw-bold mb-4 text-maroon">ACCOUNT INFORMATION</h6>
-                <div class="row g-3">
-                    <div class="col-6">
-                        <p class="mb-1 text-muted small fw-semibold text-uppercase">Username</p>
-                        <p class="mb-0 fw-medium fs-5" id="infoUsername">...</p>
-                    </div>
-                    <div class="col-6">
-                        <p class="mb-1 text-muted small fw-semibold text-uppercase">Address</p>
-                        <p class="mb-0 fw-medium fs-5" id="infoAddress">...</p>
-                    </div>
-                </div>
-            </div>
+            <button onclick="logout()" class="btn-logout mt-4">
+                Sign Out
+            </button>
 
-            <div class="mt-4">
-                <a onclick="logout()" class="btn-logout">Sign Out</a>
-            </div>
         </div>
+
     </div>
+
 </div>
 
 <script>
-    const loggedInUser = sessionStorage.getItem('loggedInUser');
 
-    if (!loggedInUser) {
-        window.location.href = 'login.html';
-    } else {
-        const savedUserString = localStorage.getItem('user_' + loggedInUser);
-        if (savedUserString) {
-            const userData = JSON.parse(savedUserString);
-            
-            document.getElementById('mainUsername').textContent = userData.username;
-            document.getElementById('infoUsername').textContent = userData.username;
-            document.getElementById('infoAddress').textContent = userData.address;
+const loggedInUser = sessionStorage.getItem('loggedInUser');
 
-            if (userData.profilePic) {
-                document.getElementById('profileImage').src = userData.profilePic;
-                document.getElementById('profileImage').style.display = 'inline-block';
-                
-                const placeholder = document.getElementById('noImagePlaceholder');
-                if(placeholder) {
-                    placeholder.remove();
-                }
-            }
-        }
-    }
+if(!loggedInUser){
 
-    function logout() {
-        sessionStorage.removeItem('loggedInUser');
-        window.location.href = 'login.html';
-    }
+    window.location.href = 'login.html';
+
+}else{
+
+    const userData =
+    JSON.parse(localStorage.getItem('user_' + loggedInUser));
+
+    document.getElementById('profileImage').src = userData.profilePic;
+
+    document.getElementById('mainUsername').innerHTML =
+    userData.username;
+
+    document.getElementById('infoFullname').innerHTML =
+    userData.fullname;
+
+    document.getElementById('infoEmail').innerHTML =
+    userData.email;
+
+    document.getElementById('infoPhone').innerHTML =
+    userData.phone;
+
+    document.getElementById('infoBirthday').innerHTML =
+    userData.birthday;
+
+    document.getElementById('infoGender').innerHTML =
+    userData.gender;
+
+    document.getElementById('infoAddress').innerHTML =
+    userData.address;
+
+    document.getElementById('infoSchool').innerHTML =
+    userData.school;
+
+    document.getElementById('infoGraduationYear').innerHTML =
+    userData.graduationYear;
+
+    document.getElementById('infoCourse').innerHTML =
+    userData.course;
+
+    document.getElementById('infoOccupation').innerHTML =
+    userData.occupation;
+
+    document.getElementById('infoBio').innerHTML =
+    userData.bio;
+
+}
+
+function logout(){
+
+    sessionStorage.removeItem('loggedInUser');
+
+    window.location.href = 'login.html';
+
+}
+
 </script>
+
 </body>
 </html>
