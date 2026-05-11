@@ -3,98 +3,329 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register | Welcome!</title>
+    <title>Register</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
+
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background: linear-gradient(135deg, #4a000d 0%, #800020 100%); 
-            min-height: 100vh; display: flex; align-items: center; justify-content: center; margin: 0; 
+
+        body{
+            background:linear-gradient(135deg,#4a000d 0%,#800020 100%);
+            font-family:'Inter',sans-serif;
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            margin:0;
+            padding:30px 0;
         }
-        .custom-card { border: none; border-radius: 20px; box-shadow: 0 25px 50px rgba(0,0,0,0.4); background: #ffffff; width: 100%; max-width: 500px; padding: 3rem; margin: 2rem 1rem; }
-        .form-control { border-radius: 10px; padding: 12px 15px; border: 1px solid #e2e8f0; background: #f8f9fa; }
-        .form-control:focus { border-color: #800020; box-shadow: 0 0 0 4px rgba(128, 0, 32, 0.15); background-color: #ffffff !important; }
-        .btn-register { background: #800020; color: #fff; border: none; border-radius: 10px; padding: 14px; font-weight: 600; width: 100%; transition: all 0.3s; }
-        .btn-register:hover { background: #5c0017; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); color: #fff; }
-        .text-maroon { color: #800020; font-weight: 700; }
+
+        .auth-card{
+            background:white;
+            padding:40px;
+            border-radius:25px;
+            box-shadow:0 20px 50px rgba(0,0,0,0.3);
+            width:100%;
+            max-width:650px;
+        }
+
+        .form-control{
+            border-radius:12px;
+            padding:12px;
+            border:1px solid #e5e7eb;
+        }
+
+        .form-control:focus{
+            border-color:#800020;
+            box-shadow:0 0 0 4px rgba(128,0,32,0.15);
+        }
+
+        .btn-primary{
+            background:#800020;
+            border:none;
+            border-radius:12px;
+            padding:14px;
+            font-weight:600;
+        }
+
+        .btn-primary:hover{
+            background:#5c0017;
+        }
+
+        .profile-preview{
+            width:160px;
+            height:160px;
+            border-radius:12px;
+            object-fit:cover;
+            border:4px solid #800020;
+            display:none;
+            margin:auto;
+        }
+
     </style>
 </head>
 <body>
 
-<div class="custom-card">
-    <h3 class="text-center mb-4 fw-bold text-maroon">Create Account</h3>
+<div class="auth-card">
 
-    <div id="statusMsg" class="alert rounded-3 text-center" style="display:none; font-size: 0.95rem;"></div>
+    <h3 class="fw-bold text-center mb-1" style="color:#800020;">
+        Create Account
+    </h3>
+
+    <p class="text-muted text-center mb-4">
+        Fill in your personal information
+    </p>
+
+    <div id="statusMsg" class="alert d-none"></div>
 
     <form id="registerForm">
-        <div class="mb-3">
-            <label class="form-label text-muted fw-semibold small text-uppercase">Username</label>
-            <input type="text" id="username" class="form-control" placeholder="Choose a username" required>
+
+        <div class="text-center mb-4">
+            <img id="previewImage" class="profile-preview">
         </div>
-        <div class="mb-3">
-            <label class="form-label text-muted fw-semibold small text-uppercase">Password</label>
-            <input type="password" id="password" class="form-control" placeholder="Create a password" required>
+
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+                <label class="small fw-bold text-uppercase text-muted">
+                    Full Name
+                </label>
+
+                <input type="text" id="fullname" class="form-control" required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="small fw-bold text-uppercase text-muted">
+                    Username
+                </label>
+
+                <input type="text" id="username" class="form-control" required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="small fw-bold text-uppercase text-muted">
+                    Password
+                </label>
+
+                <input type="password" id="password" class="form-control" required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="small fw-bold text-uppercase text-muted">
+                    Email
+                </label>
+
+                <input type="email" id="email" class="form-control" required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="small fw-bold text-uppercase text-muted">
+                    Phone Number
+                </label>
+
+                <input type="text" id="phone" class="form-control" required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="small fw-bold text-uppercase text-muted">
+                    Birthday
+                </label>
+
+                <input type="date" id="birthday" class="form-control" required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="small fw-bold text-uppercase text-muted">
+                    Gender
+                </label>
+
+                <select id="gender" class="form-control" required>
+                    <option value="">Select Gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Prefer not to say</option>
+                </select>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="small fw-bold text-uppercase text-muted">
+                    Address
+                </label>
+
+                <input type="text" id="address" class="form-control" required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="small fw-bold text-uppercase text-muted">
+                    School Graduated
+                </label>
+
+                <input type="text" id="school" class="form-control" required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="small fw-bold text-uppercase text-muted">
+                    Graduation Year
+                </label>
+
+                <input type="number" id="graduationYear" class="form-control" required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="small fw-bold text-uppercase text-muted">
+                    Course
+                </label>
+
+                <input type="text" id="course" class="form-control">
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="small fw-bold text-uppercase text-muted">
+                    Occupation
+                </label>
+
+                <input type="text" id="occupation" class="form-control">
+            </div>
+
+            <div class="col-12 mb-3">
+                <label class="small fw-bold text-uppercase text-muted">
+                    About Me
+                </label>
+
+                <textarea id="bio" rows="3" class="form-control"></textarea>
+            </div>
+
+            <div class="col-12 mb-4">
+                <label class="small fw-bold text-uppercase text-muted">
+                    2x2 Profile Picture
+                </label>
+
+                <input type="file"
+                       id="profile_pic"
+                       class="form-control"
+                       accept="image/*"
+                       required>
+
+                <small class="text-muted">
+                    Maximum file size: 2MB
+                </small>
+            </div>
+
         </div>
-        <div class="mb-3">
-            <label class="form-label text-muted fw-semibold small text-uppercase">Address</label>
-            <input type="text" id="address" class="form-control" placeholder="Enter your full address" required>
+
+        <button type="submit" class="btn btn-primary w-100">
+            Register Account
+        </button>
+
+        <div class="text-center mt-4">
+            <a href="login.html" class="text-decoration-none" style="color:#800020;">
+                Already have an account? Sign In
+            </a>
         </div>
-        <div class="mb-4">
-            <label class="form-label text-muted fw-semibold small text-uppercase">Profile Picture</label>
-            <input type="file" id="profile_pic" class="form-control" accept="image/*" required>
-            <small class="text-muted" style="font-size: 0.75rem;">(Maximum size: 5MB)</small>
-        </div>
-        <button type="submit" class="btn btn-register mt-2">Register Account</button>
-        <div class="mt-4 text-center">
-            <small class="text-muted">Already have an account? <a href="login.html" class="text-maroon text-decoration-none">Log in</a></small>
-        </div>
+
     </form>
+
 </div>
 
 <script>
-    document.getElementById('registerForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-        const address = document.getElementById('address').value;
-        const fileInput = document.getElementById('profile_pic');
-        const statusMsgDiv = document.getElementById('statusMsg');
 
-        statusMsgDiv.style.display = 'none';
-        statusMsgDiv.className = 'alert rounded-3 text-center';
+const imageInput = document.getElementById('profile_pic');
+const previewImage = document.getElementById('previewImage');
 
-        if (fileInput.files.length > 0) {
-            const file = fileInput.files[0];
+imageInput.addEventListener('change', function(){
 
-            if (file.size > 5 * 1024 * 1024) {
-                statusMsgDiv.innerHTML = "<b>Error:</b> Image is too large! Please choose a picture under 5MB.";
-                statusMsgDiv.classList.add('alert-danger');
-                statusMsgDiv.style.display = 'block';
-                return; 
-            }
+    const file = this.files[0];
 
-            const reader = new FileReader();
+    if(file){
 
-            reader.onload = function(event) {
-                const base64Image = event.target.result;
-                const userAccount = { username, password, address, profilePic: base64Image };
+        const reader = new FileReader();
 
-                try {
-                    localStorage.setItem('user_' + username, JSON.stringify(userAccount));
-                    statusMsgDiv.innerHTML = "Success! <a href='login.html' class='alert-link text-maroon'>Log in here</a>";
-                    statusMsgDiv.classList.add('alert-success');
-                    statusMsgDiv.style.display = 'block';
-                    document.getElementById('registerForm').reset();
-                } catch (error) {
-                    statusMsgDiv.innerHTML = "<b>Error:</b> Browser storage full. Please try a slightly smaller image.";
-                    statusMsgDiv.classList.add('alert-danger');
-                    statusMsgDiv.style.display = 'block';
-                }
-            };
-            reader.readAsDataURL(file);
+        reader.onload = function(e){
+            previewImage.src = e.target.result;
+            previewImage.style.display = 'block';
         }
-    });
+
+        reader.readAsDataURL(file);
+    }
+
+});
+
+document.getElementById('registerForm').addEventListener('submit', function(e){
+
+    e.preventDefault();
+
+    const fullname = document.getElementById('fullname').value;
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const birthday = document.getElementById('birthday').value;
+    const gender = document.getElementById('gender').value;
+    const address = document.getElementById('address').value;
+    const school = document.getElementById('school').value;
+    const graduationYear = document.getElementById('graduationYear').value;
+    const course = document.getElementById('course').value;
+    const occupation = document.getElementById('occupation').value;
+    const bio = document.getElementById('bio').value;
+
+    const file = imageInput.files[0];
+
+    const statusMsg = document.getElementById('statusMsg');
+
+    if(file.size > 2 * 1024 * 1024){
+
+        statusMsg.className = 'alert alert-danger';
+        statusMsg.innerHTML = 'Image too large.';
+
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(event){
+
+        const userData = {
+
+            fullname,
+            username,
+            password,
+            email,
+            phone,
+            birthday,
+            gender,
+            address,
+            school,
+            graduationYear,
+            course,
+            occupation,
+            bio,
+            profilePic:event.target.result
+
+        };
+
+        localStorage.setItem(
+            'user_' + username,
+            JSON.stringify(userData)
+        );
+
+        statusMsg.className = 'alert alert-success';
+
+        statusMsg.innerHTML =
+        "Registration successful! <a href='login.html'>Login here</a>";
+
+        document.getElementById('registerForm').reset();
+
+        previewImage.style.display = 'none';
+
+    }
+
+    reader.readAsDataURL(file);
+
+});
+
 </script>
+
 </body>
 </html>
